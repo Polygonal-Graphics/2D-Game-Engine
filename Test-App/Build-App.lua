@@ -1,4 +1,4 @@
-project "App"
+project "Test-App"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
@@ -12,12 +12,12 @@ project "App"
       "Source",
 
 	  -- Include Core
-	  "../Core/Source"
+	  "../Polygonal-Engine/Source"
    }
 
    links
    {
-      "Core"
+      "Polygonal-Engine"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")

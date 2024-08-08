@@ -1,4 +1,4 @@
-project "Core"
+project "Polygonal-Engine"
    kind "StaticLib"
    language "C++"
    cppdialect "C++20"
