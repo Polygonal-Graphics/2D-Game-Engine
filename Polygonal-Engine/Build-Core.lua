@@ -17,6 +17,11 @@ project "Polygonal-Engine"
         "Source/Dependencies/libs"
    }
 
+   flags
+   {
+       "MultiProcessorCompile"
+   }
+
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 

@@ -9,12 +9,22 @@ project "Test-App"
 
    includedirs
    {
-      "Source", "../Polygonal-Engine/Source", 
+      "Source", "../Polygonal-Engine/Source/Core", "../Polygonal-Engine/Source/Dependencies/includes",
+   }
+
+   libdirs
+   {
+      "../Polygonal-Engine/Source/Dependencies/libs"
    }
 
    links
    {
-      "Polygonal-Engine", 
+      "Polygonal-Engine", "glfw3", "opengl32"
+   }
+
+   flags
+   {
+       "MultiProcessorCompile"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
