@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Utilities/glad.c"
 
 int main()
 {

@@ -9,17 +9,12 @@ project "Test-App"
 
    includedirs
    {
-      "Source", "../Polygonal-Engine/Source/Core", "../Polygonal-Engine/Source/Dependencies/includes",
-   }
-
-   libdirs
-   {
-      "../Polygonal-Engine/Source/Dependencies/libs"
+      "Source", "../Polygonal-Engine/Source/Core", "../Vendor/includes"
    }
 
    links
    {
-      "Polygonal-Engine", "glfw3", "opengl32"
+      "Polygonal-Engine"
    }
 
    flags

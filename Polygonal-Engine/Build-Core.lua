@@ -5,11 +5,11 @@ project "Polygonal-Engine"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp", "Source/**.hpp", "Source/**.lib" }
+   files { "Source/**.h", "Source/**.cpp", "Source/**.c" }
 
    includedirs
    {
-        "Source", "Source/Dependencies/includes"
+        "Source", "Source/Dependencies/includes", "../Vendor/includes"
    }
 
    libdirs
@@ -17,9 +17,14 @@ project "Polygonal-Engine"
         "Source/Dependencies/libs"
    }
 
+   links
+   {
+        "glfw3", "opengl32"
+   }
+
    flags
    {
-       "MultiProcessorCompile"
+        "MultiProcessorCompile"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
