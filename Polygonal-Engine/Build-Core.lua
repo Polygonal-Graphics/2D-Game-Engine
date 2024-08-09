@@ -9,7 +9,12 @@ project "Polygonal-Engine"
 
    includedirs
    {
-      "Source"
+        "Source", "Source/Dependencies/includes"
+   }
+
+   libdirs
+   {
+        "Source/Dependencies/libs"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")

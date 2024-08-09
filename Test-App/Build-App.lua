@@ -9,15 +9,12 @@ project "Test-App"
 
    includedirs
    {
-      "Source",
-
-	  -- Include Core
-	  "../Polygonal-Engine/Source"
+      "Source", "../Polygonal-Engine/Source", 
    }
 
    links
    {
-      "Polygonal-Engine"
+      "Polygonal-Engine", 
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
