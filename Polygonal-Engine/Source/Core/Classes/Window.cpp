@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-PE::Window::Window(unsigned int width, unsigned int height, bool fullscreen) : m_WindowWidth(width), m_WindowHeight(height), m_Fullscreen(fullscreen)
+PE::Window::Window(uint32_t width, uint32_t height, bool fullscreen) : m_WindowWidth(width), m_WindowHeight(height), m_Fullscreen(fullscreen)
 {
     ActivateWindow();
 }
@@ -38,23 +38,6 @@ void PE::Window::ActivateWindow()
     }
     glViewport(0, 0, m_WindowWidth, m_WindowHeight);
 
-    glfwSetKeyCallback(m_WindowInstance, [](GLFWwindow* window, int key, int scancode, int action, int mode)
-        {
-            // when a user presses the escape key, we set the WindowShouldClose property to true, closing the application
-            if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-            {
-                glfwSetWindowShouldClose(window, true);
-            }
-            if (key >= 0 && key < 1024)
-            {
-                /*
-                if (action == GLFW_PRESS)
-                    Breakout.Keys[key] = true;
-                else if (action == GLFW_RELEASE)
-                    Breakout.Keys[key] = false;*/
-            }
-        });
-
     glfwSetFramebufferSizeCallback(m_WindowInstance, [](GLFWwindow* window, int width, int height)
         {
             // make sure the viewport matches the new window dimensions; note that width and 
@@ -65,26 +48,12 @@ void PE::Window::ActivateWindow()
 
 void PE::Window::PollEvents()
 {
-    if (m_WindowInstance)
-    {
-        glfwPollEvents();
-    }
-    else
-    {
-        std::cout << "No active window instance to poll events!\n";
-    }
+    glfwPollEvents();
 }
 
 void PE::Window::SwapBuffers()
 {
-    if (m_WindowInstance)
-    {
-        glfwSwapBuffers(m_WindowInstance);
-    }
-    else
-    {
-        std::cout << "No active window instance to swap buffers!\n";
-    }
+    glfwSwapBuffers(m_WindowInstance);
 }
 
 bool PE::Window::WindowActive()

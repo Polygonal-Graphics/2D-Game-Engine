@@ -1,5 +1,8 @@
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 #include "Game.h"
 #include "Window.h"
+#include "InputManager.h"
 
 #include <glad/glad.h>
 #include <iostream>
@@ -12,6 +15,7 @@ PE::Game::Game()
 PE::Game::~Game()
 {
     delete m_Window;
+    delete m_InputManager;
 }
 
 bool PE::Game::Start()
@@ -54,10 +58,22 @@ bool PE::Game::Init()
         return false;
     }
 
+    m_InputManager = new InputManager(m_Window->GetGLFWWIndow());
+    if (!m_InputManager)
+    {
+        std::cout << "Could not create input manager\n";
+        return false;
+    }
+
     // OpenGL configuration
     // --------------------
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     return true;
+}
+
+bool PE::Game::GetKeyDown(char Key)
+{
+    return m_InputManager->Keys[Key];
 }
