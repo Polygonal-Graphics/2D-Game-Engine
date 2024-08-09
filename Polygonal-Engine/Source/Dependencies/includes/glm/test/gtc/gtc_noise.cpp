@@ -1,6 +1,6 @@
 #include <glm/gtc/noise.hpp>
-#include <gli/gli.hpp>
-#include <gli/gtx/loader.hpp>
+#include <glm/test/external/gli/gli.hpp>
+#include <glm/test/external/gli/gtx/loader.hpp>
 
 std::size_t const Size = 64;
 
