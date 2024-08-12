@@ -4,7 +4,6 @@
 #include "Window.h"
 #include "InputManager.h"
 
-#include <glad/glad.h>
 #include <iostream>
 
 PE::Game::Game()
@@ -18,7 +17,7 @@ PE::Game::~Game()
     delete m_InputManager;
 }
 
-bool PE::Game::Start()
+bool PE::Game::StartImpl()
 {
     if (!Init()) return false;
 

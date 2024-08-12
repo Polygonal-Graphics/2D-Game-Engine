@@ -3,8 +3,7 @@
 
 int main()
 {
-	PE::Game game;
-	if (!game.Start()) return -1;
+	PE::Game::Start();
 
 	return 0;
 }
