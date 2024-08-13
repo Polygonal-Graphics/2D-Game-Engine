@@ -5,9 +5,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-namespace PE
+namespace Polygame
 {
-	namespace PWindow
+	namespace PolyWindow
 	{
 		// Creates a new GLFWwindow pointer to a window of the specified size and initializes GLAD for gl functions.
 		GLFWwindow* CreateWindow(uint32_t width, uint32_t height, bool fullscreen)
@@ -27,8 +27,7 @@ namespace PE
 			newWindow = glfwCreateWindow(width, height, "Poly-Game", monitor, nullptr);
 			glfwMakeContextCurrent(newWindow);
 
-			// glad: load all OpenGL function pointers
-			// ---------------------------------------
+			// Glad: load all OpenGL function pointers
 			if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			{
 				std::cout << "Failed to initialize GLAD" << std::endl;
@@ -37,8 +36,7 @@ namespace PE
 
 			glfwSetFramebufferSizeCallback(newWindow, [](GLFWwindow* window, int width, int height)
 				{
-					// make sure the viewport matches the new window dimensions; note that width and 
-					// height will be significantly larger than specified on retina displays.
+					// Make sure the viewport matches the new window dimensions
 					glViewport(0, 0, width, height);
 				});
 

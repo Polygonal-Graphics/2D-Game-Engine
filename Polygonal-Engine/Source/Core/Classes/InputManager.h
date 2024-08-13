@@ -4,8 +4,11 @@
 
 struct GLFWwindow;
 
-namespace PE
+namespace Polygame
 {
+	/*
+	* A singleton class that can be queried for various mouse and keyboard inputs.
+	*/
 	class InputManager
 	{
 	public:

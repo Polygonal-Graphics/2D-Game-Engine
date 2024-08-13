@@ -2,15 +2,18 @@
 
 struct GLFWwindow;
 
-namespace PE
+namespace Polygame
 {
 	class InputManager;
 	class Window;
 
-	// A singleton class that brings together Polygame subsystems as the hub of any game.
+	/*
+	* A singleton class that brings together Polygame subsystems as the hub of any game.
+	*/
 	class Game
 	{
 	public:
+
 		// Initializes and returns the static Game singleton instance
 		static Game& Get()
 		{
@@ -22,8 +25,17 @@ namespace PE
 		static bool Start() { return Get().StartImpl(); }
 
 	private:
-		// Subsystem pointers
+
+		/*
+		* Private members
+		*/
+
+		// Native GLFW window instance
 		GLFWwindow* m_Window = nullptr;
+
+		/*
+		* Private methods
+		*/
 
 		// Initializes subsystems prior to starting the game. Returns false if any subsystems fail to initialize.
 		bool Init();
@@ -37,6 +49,7 @@ namespace PE
 		Game();
 
 	public:
+
 		/*
 		* Getters and Setters
 		*/

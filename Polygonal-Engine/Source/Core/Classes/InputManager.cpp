@@ -2,7 +2,7 @@
 #include "GLFW/glfw3.h"
 #include "Game.h"
 
-namespace PE
+namespace Polygame
 {
     bool InputManager::GetKeyDownImpl(int key)
     {

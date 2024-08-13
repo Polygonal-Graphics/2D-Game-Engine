@@ -3,7 +3,7 @@
 
 int main()
 {
-	PE::Game::Start();
+	Polygame::Game::Start();
 
 	return 0;
 }
