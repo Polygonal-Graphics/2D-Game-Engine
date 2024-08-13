@@ -1,5 +1,7 @@
 #pragma once
 
+struct GLFWwindow;
+
 namespace PE
 {
 	class InputManager;
@@ -19,12 +21,9 @@ namespace PE
 		// Loads the game, opens the window, and enters the game loop.
 		static bool Start() { return Get().StartImpl(); }
 
-		~Game();
-
 	private:
 		// Subsystem pointers
-		InputManager* m_InputManager = nullptr;
-		Window* m_Window = nullptr;
+		GLFWwindow* m_Window = nullptr;
 
 		// Initializes subsystems prior to starting the game. Returns false if any subsystems fail to initialize.
 		bool Init();
@@ -38,6 +37,10 @@ namespace PE
 		Game();
 
 	public:
-		bool GetKeyDown(const char Key);
+		/*
+		* Getters and Setters
+		*/
+
+		static GLFWwindow* GetWindow() { return Get().m_Window; }
 	};
 }

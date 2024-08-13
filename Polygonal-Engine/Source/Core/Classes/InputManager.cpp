@@ -1,28 +1,29 @@
 #include "InputManager.h"
 #include "GLFW/glfw3.h"
+#include "Game.h"
 
-PE::InputManager::InputManager(GLFWwindow* activeWindow)
+namespace PE
 {
-	SetActiveWindow(activeWindow);
-}
+    bool InputManager::GetKeyDownImpl(int key)
+    {
+        GLFWwindow* window = static_cast<GLFWwindow*>(Game::GetWindow());
+        bool state = glfwGetKey(window, key);
+        return state == GLFW_PRESS;
+    }
+    
+    bool InputManager::GetMouseButtonDownImpl(int button)
+    {
+        GLFWwindow* window = static_cast<GLFWwindow*>(Game::GetWindow());
+        bool state = glfwGetMouseButton(window, button);
+        return state == GLFW_PRESS;
+    }
 
-void PE::InputManager::SetActiveWindow(GLFWwindow* activeWindow)
-{
-	m_WindowInstance = activeWindow;	
-	glfwSetWindowUserPointer(m_WindowInstance, this);
+    glm::vec2 InputManager::GetMouseScreenPosImpl()
+    {
+        GLFWwindow* window = static_cast<GLFWwindow*>(Game::GetWindow());
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
 
-	glfwSetKeyCallback(m_WindowInstance, [](GLFWwindow* window, int key, int scancode, int action, int mode)
-		{
-			InputManager* IM = static_cast<InputManager*>(glfwGetWindowUserPointer(window));
-            // when a user presses the escape key, we set the WindowShouldClose property to true, closing the application
-            if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-                glfwSetWindowShouldClose(window, true);
-            if (key >= 0 && key < 1024)
-            {
-                if (action == GLFW_PRESS)
-                    IM->Keys[key] = true;
-                else if (action == GLFW_RELEASE)
-                    IM->Keys[key] = false;
-            }
-		});
+        return glm::vec2((float)xpos, (float)ypos);
+    }
 }
