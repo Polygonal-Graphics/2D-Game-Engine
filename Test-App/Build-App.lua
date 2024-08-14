@@ -9,7 +9,7 @@ project "Test-App"
 
    includedirs
    {
-      "Source", "../Polygonal-Engine/Source/Core", "../Vendor/includes"
+      "Source", "../Polygonal-Engine/Source/Core/Classes", "../Vendor/includes"
    }
 
    links
