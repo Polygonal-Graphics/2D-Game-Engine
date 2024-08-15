@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Components/TransformComponent.h"
+#include <iostream>
 
 Player::Player()
 {

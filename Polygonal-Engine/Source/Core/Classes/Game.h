@@ -6,6 +6,7 @@ namespace Polygame
 {
 	class InputManager;
 	class Window;
+	class Scene;
 
 	/*
 	* A singleton class that brings together Polygame subsystems as the hub of any game.
@@ -33,6 +34,9 @@ namespace Polygame
 		// Native GLFW window instance
 		GLFWwindow* m_Window = nullptr;
 
+		// The current scene that will be updated and rendered.
+		Scene* m_ActiveScene = nullptr;
+
 		/*
 		* Private methods
 		*/
@@ -45,7 +49,9 @@ namespace Polygame
 		*/
 
 		bool StartImpl();
+		void SetSceneImpl(Scene* scene);
 
+		// Private constructor for singleton
 		Game();
 
 	public:
@@ -55,5 +61,7 @@ namespace Polygame
 		*/
 
 		static GLFWwindow* GetWindow() { return Get().m_Window; }
+
+		static void SetScene(Scene* scene) { Get().SetSceneImpl(scene); }
 	};
 }

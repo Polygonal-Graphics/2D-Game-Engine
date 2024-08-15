@@ -13,4 +13,5 @@ public:
 	Player();
 
 	Polygame::TransformComponent* Transform;
+
 };

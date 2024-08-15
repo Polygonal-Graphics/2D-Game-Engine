@@ -1,14 +1,18 @@
 #include "GameObjects/Player.h"
-#include "Components/TransformComponent.h"
+#include "Scene.h"
 #include "Game.h"
+#include <iostream>
+
+using namespace Polygame;
 
 int main()
 {
-	Player player;
-	Polygame::BaseComponent* TransformBaseComponent = player.GetComponent("Transform");
-	Polygame::TransformComponent* Transform = dynamic_cast<Polygame::TransformComponent*>(TransformBaseComponent);
-
-	Polygame::Game::Start();
+	Scene* scene = new Scene;
+	Player* player = new Player;
+	Player* player2 = new Player;
+	scene->AddGameObject(player);
+	Game::SetScene(scene);
+	Game::Start();
 
 	return 0;
 }
