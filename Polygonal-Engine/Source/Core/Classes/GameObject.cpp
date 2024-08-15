@@ -32,17 +32,6 @@ namespace Polygame
 		m_Components.push_back(component);
 	}
 
-	BaseComponent* GameObject::GetComponent(const char* componentTypeString)
-	{
-		for (BaseComponent* component : m_Components)
-		{
-			if (component->GetTypeString() == componentTypeString)
-				return component;
-		}
-
-		return nullptr;
-	}
-
 	GameObject::~GameObject()
 	{
 		// Fix the linked list for when object is deleted.

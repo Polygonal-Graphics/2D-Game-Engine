@@ -14,11 +14,5 @@ namespace Polygame
 		virtual void Start() {}
 		// Called every tick of the game loop.
 		virtual void Update(float deltaTime) {}
-
-		const char* m_TypeString = "BaseComponent"; // String used to identify the component's type (should be unique for each derived component class).
-
-	public:
-		// Returns the TypeString of the component.
-		const char* GetTypeString() { return m_TypeString; }
 	};
 }
