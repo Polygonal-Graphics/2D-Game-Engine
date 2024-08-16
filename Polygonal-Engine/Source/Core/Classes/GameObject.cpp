@@ -1,5 +1,7 @@
 #include "GameObject.h"
+
 #include "Components/BaseComponent.h"
+
 #include <iostream>
 
 namespace Polygame

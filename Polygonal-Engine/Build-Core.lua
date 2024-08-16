@@ -5,7 +5,7 @@ project "Polygonal-Engine"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp", "Source/**.c" }
+   files { "Source/**.h", "Source/**.cpp", "Source/**.c", "Source/**.vert", "Source/**.frag" }
 
    includedirs
    {

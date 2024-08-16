@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "Scene.h"
-#include <iostream>
 
 using namespace Polygame;
 

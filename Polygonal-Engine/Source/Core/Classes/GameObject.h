@@ -20,6 +20,8 @@ namespace Polygame
 		void AddComponent(BaseComponent* component);
 		// Returns a pointer to the first component of the given type contained in the GameObject's Components vector. Returns a nullptr if no object of the type is found.
 		template <class T> T* GetComponent();
+		// Returns the next GameObject in the linked list or nullptr if none exists.
+		GameObject* GetNextObject() const { return m_NextGameObject; }
 
 	protected:
 		// Called before the first tick of the game loop.

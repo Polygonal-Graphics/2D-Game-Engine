@@ -1,7 +1,6 @@
 #include "Scene.h"
-#include "GameObject.h"
 
-#include <iostream>
+#include "GameObject.h"
 
 namespace Polygame
 {
@@ -21,8 +20,6 @@ namespace Polygame
 			delete currentObject;
 			currentObject = nextObject;
 		}
-
-		std::cout << "Scene deleted\n";
 	}
 
 	void Scene::Start()

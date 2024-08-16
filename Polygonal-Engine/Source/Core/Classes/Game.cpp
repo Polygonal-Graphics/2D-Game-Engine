@@ -1,8 +1,10 @@
 #include "Game.h"
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Window.h"
 #include "Scene.h"
+#include "Renderer.h"
 
 #include <iostream>
 
@@ -23,6 +25,8 @@ namespace Polygame
 
         // Call start on the active scene
         m_ActiveScene->Start();
+        // Pass the scene root to the Renderer
+        Renderer::SetRoot(m_ActiveScene->m_RootObject);
 
         while (!glfwWindowShouldClose(m_Window))
         {
@@ -36,8 +40,7 @@ namespace Polygame
             m_ActiveScene->Update(deltaTime);
 
             // Render
-            glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+            Renderer::Render();
 
             glfwSwapBuffers(m_Window);
         }
