@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
-#include "GameObject.h"
+#include "GameObject/GameObject.h"
+#include "GameObject/WorldObject.h"
 #include "Core/Shaders/Shader.h"
 
 #include <glad/glad.h>
@@ -58,21 +59,37 @@ namespace Polygame
 
 	void Renderer::RenderImpl()
 	{
+        // Start frame
         glClear(GL_COLOR_BUFFER_BIT);
 
+        // Check scene root
         if (m_SceneRoot == nullptr)
         {
             std::cout << "Renderer has no scene\n";
             return;
         }
 
+        // Prepare for Rendering
         m_ActiveShader->Use();
-        m_ActiveShader->UMat4("model", glm::scale(glm::mat4(1.0f), glm::vec3(500.0f)));
         m_ActiveShader->UMat4("projection", glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f));
         glBindVertexArray(m_QuadVAO);
 
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+        // Render scene hierarchy
+        GameObject* CurrentObject = m_SceneRoot;
+        while (CurrentObject)
+        {
+            if (WorldObject* CurrentWorldObject = dynamic_cast<WorldObject*>(CurrentObject))
+            {
+                RenderInfo renderInfo = CurrentWorldObject->GetRenderInfo();
+                // ActiveTexture = ResourceManager::GetTexture(get<0>(renderInfo))
+                m_ActiveShader->UMat4("model", get<1>(renderInfo));
+                glDrawArrays(GL_TRIANGLES, 0, 6);
+            }
 
+            CurrentObject = CurrentObject->GetNextObject();
+        }
+
+        // Complete frame
         glBindVertexArray(0);
 	}
 

@@ -23,6 +23,9 @@ namespace Polygame
 		// Returns the next GameObject in the linked list or nullptr if none exists.
 		GameObject* GetNextObject() const { return m_NextGameObject; }
 
+		// Used to identify the GameObject in the scene linked list.
+		const char* m_Name = "GameObject";
+
 	protected:
 		// Called before the first tick of the game loop.
 		virtual void Start();

@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-#include "Components/BaseComponent.h"
+#include "../Components/BaseComponent.h"
 
 #include <iostream>
 
