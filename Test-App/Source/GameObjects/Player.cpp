@@ -14,8 +14,7 @@ Player::Player()
 
 void Player::Update(float deltaTime)
 {
-	static int fallTime;
-	static bool keyDown = false;
+	WorldObject::Update(deltaTime);
 
 	// Move right
 	m_Transform->m_Location += glm::vec3(100.0f * deltaTime, 0.0f, 0.0f);
@@ -28,12 +27,12 @@ void Player::Update(float deltaTime)
 	}
 
 	// Input
-	if (Polygame::InputManager::GetKeyDown(32) && keyDown == false)
+	if (Polygame::InputManager::GetKeyDown(32) && !spacePressed)
 	{
 		m_Transform->m_Location += glm::vec3(0.0f, -100.0f, 0.0f);
 		fallTime = 0;
-		keyDown = true;
+		spacePressed = true;
 	}
 	else if (!Polygame::InputManager::GetKeyDown(32))
-		keyDown = false;
+		spacePressed = false;
 }
