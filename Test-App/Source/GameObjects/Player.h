@@ -2,11 +2,6 @@
 
 #include "GameObject/WorldObject.h"
 
-namespace Polygame
-{
-	class TransformComponent;
-}
-
 class Player : public Polygame::WorldObject
 {
 public:

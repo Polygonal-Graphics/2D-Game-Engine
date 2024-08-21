@@ -71,7 +71,7 @@ namespace Polygame
 
         // Prepare for Rendering
         m_ActiveShader->Use();
-        m_ActiveShader->UMat4("projection", glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f));
+        m_ActiveShader->UMat4("projection", glm::ortho(0.0f, 1920.0f, 1080.0f, 0.0f, -1.0f, 1.0f));
         glBindVertexArray(m_QuadVAO);
 
         // Render scene hierarchy
@@ -81,7 +81,7 @@ namespace Polygame
             if (WorldObject* CurrentWorldObject = dynamic_cast<WorldObject*>(CurrentObject))
             {
                 RenderInfo renderInfo = CurrentWorldObject->GetRenderInfo();
-                // ActiveTexture = ResourceManager::GetTexture(get<0>(renderInfo))
+                glBindTextureUnit(0, get<0>(renderInfo));
                 m_ActiveShader->UMat4("model", get<1>(renderInfo));
                 glDrawArrays(GL_TRIANGLES, 0, 6);
             }

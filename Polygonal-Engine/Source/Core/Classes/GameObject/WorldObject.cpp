@@ -24,7 +24,7 @@ namespace Polygame
 			return { 0, 0 };
 		}
 
-		return { m_Sprite->m_SpriteName, m_Transform->GetModelMatrix() };
+		return { m_Sprite->m_TextureID, m_Transform->GetModelMatrix() };
 	}
 }
 

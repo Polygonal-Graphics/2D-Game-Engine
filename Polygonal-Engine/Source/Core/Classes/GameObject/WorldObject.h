@@ -10,14 +10,18 @@ namespace Polygame
 	class TransformComponent;
 	class SpriteComponent;
 
-	typedef std::tuple<const char*, glm::mat4> RenderInfo;
+	typedef std::tuple<uint32_t, glm::mat4> RenderInfo;
 
+	/*
+	* A child of GameObject that will be rendered to the scene based on the properties of its Transform and Sprite components that are passed to the Renderer through
+	* GetRenderInfo().
+	*/
 	class WorldObject : public GameObject
 	{
 	public:
 		WorldObject();
 
-		// Returns a tuple with the info needed to render the WorldObject. Index 0 contains the name of the sprite in the ResourceManager
+		// Returns a tuple with the info needed to render the WorldObject. Index 0 contains the TextureID of the sprite for binding
 		// and index 1 contains the model matrix for rendering the sprite.
 		RenderInfo GetRenderInfo();
 
@@ -25,7 +29,9 @@ namespace Polygame
 		const char* m_Name = "WorldObject";
 
 	protected:
+		// The TransformComponent whos model matrix will be used when rendering the WorldObject.
 		TransformComponent* m_Transform = nullptr;
+		// The SpriteComponent whos TextureID will be used when rendering the WorldObject.
 		SpriteComponent* m_Sprite = nullptr;
 	};
 }

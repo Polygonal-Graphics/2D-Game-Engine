@@ -1,31 +1,39 @@
 #include "Player.h"
 
 #include "Components/TransformComponent.h"
+#include "Components/SpriteComponent.h"
 #include "InputManager.h"
 
 #include <iostream>
 
 Player::Player()
 {
+	m_Sprite->SetSpriteInfo("Bird", "Assets/Textures/bird.png");
 	m_Transform->m_Scale = glm::vec3(100.0f, 100.0f, 1.0f);
 }
 
 void Player::Update(float deltaTime)
 {
-	if (Polygame::InputManager::GetKeyDown(68))
+	static int fallTime;
+	static bool keyDown = false;
+
+	// Move right
+	m_Transform->m_Location += glm::vec3(100.0f * deltaTime, 0.0f, 0.0f);
+
+	// Gravity
+	if (m_Transform->m_Location.y <= 980.0f)
 	{
-		m_Transform->m_Location += glm::vec3(30.0f * deltaTime, 0.0f, 0.0f);
+		m_Transform->m_Location += glm::vec3(0.0f, fallTime * 7.0f * deltaTime, 0.0f);
+		fallTime += 1;
 	}
-	if (Polygame::InputManager::GetKeyDown(83))
+
+	// Input
+	if (Polygame::InputManager::GetKeyDown(32) && keyDown == false)
 	{
-		m_Transform->m_Location += glm::vec3(0.0f, 30.0f * deltaTime, 0.0f);
+		m_Transform->m_Location += glm::vec3(0.0f, -100.0f, 0.0f);
+		fallTime = 0;
+		keyDown = true;
 	}
-	if (Polygame::InputManager::GetKeyDown(65))
-	{
-		m_Transform->m_Location += glm::vec3(-30.0f * deltaTime, 0.0f, 0.0f);
-	}
-	if (Polygame::InputManager::GetKeyDown(87))
-	{
-		m_Transform->m_Location += glm::vec3(0.0f, -30.0f * deltaTime, 0.0f);
-	}
+	else if (!Polygame::InputManager::GetKeyDown(32))
+		keyDown = false;
 }

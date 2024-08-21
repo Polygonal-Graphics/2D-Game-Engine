@@ -17,7 +17,12 @@ namespace Polygame
 
     bool Game::StartImpl()
     {
-        if (!Init()) return false;
+        // Check if there is an active scene
+        if (!m_ActiveScene)
+        {
+            std::cout << "No active scene\n";
+            return false;
+        }
 
         // DeltaTime variables
         float deltaTime = 0.0f;
@@ -52,15 +57,8 @@ namespace Polygame
         return true;
     }
 
-    bool Game::Init()
+    bool Game::InitImpl()
     {
-        // Check if there is an active scene
-        if (!m_ActiveScene)
-        {
-            std::cout << "No active scene\n";
-            return false;
-        }
-
         // Create a GLFWwindow on initalization
         m_Window = PolyWindow::CreateWindow(1920, 1080, false);
         if (!m_Window)

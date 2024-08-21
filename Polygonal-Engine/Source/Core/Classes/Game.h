@@ -22,7 +22,9 @@ namespace Polygame
 			return instance;
 		}
 
-		// Loads the game, opens the window, and enters the game loop.
+		// Creates the window and loads GLAD. Must be called before anything else.
+		static bool Init() { return Get().InitImpl(); };
+		// Starts the game by entering the game loop.
 		static bool Start() { return Get().StartImpl(); }
 
 	private:
@@ -42,7 +44,7 @@ namespace Polygame
 		*/
 
 		// Initializes subsystems prior to starting the game. Returns false if any subsystems fail to initialize.
-		bool Init();
+		bool InitImpl();
 
 		/*
 		* Static Implementations
