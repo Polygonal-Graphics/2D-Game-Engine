@@ -9,4 +9,8 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+private:
+	int fallTime = 0;
+	bool spacePressed = false;
+
 };
