@@ -20,9 +20,8 @@ namespace Polygame
 
 		// Sets the info for the Sprite if not using the constructor that does so. Automatically invokes the ResourceManager to load the Sprite with passed in info.
 		void SetSpriteInfo(const char* name, const char* path);
-
-		// The texture ID for this texture instance.
-		uint32_t m_TextureID = 0;
+		// Returns the TextureID for the sprite.
+		uint32_t GetSprite() const { return m_TextureID; }
 
 	private:
 		// The name of the sprite for the lookup table in the ResourceManager
@@ -30,5 +29,8 @@ namespace Polygame
 
 		// The file path of the sprite for loading it in the ResourceManager
 		const char* m_SpritePath = 0;
+
+		// The texture ID for this texture instance.
+		uint32_t m_TextureID = 0;
 	};
 }

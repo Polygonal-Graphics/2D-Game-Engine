@@ -12,7 +12,24 @@ namespace Polygame
 {
     Game::Game()
     {
-        std::cout << "Game Created\n";
+        bool success = true;
+
+        // Create a GLFWwindow on initalization (also initializes GLAD)
+        m_Window = PolyWindow::CreateWindow(1920, 1080, false);
+        if (!m_Window)
+        {
+            std::cout << "Could not create window\n";
+            success = false;
+        }
+
+        // OpenGL configuration
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        if (success)
+            std::cout << "Game Created Successfully\n";
+        else
+            std::cout << "Game Could not be Created\n";
     }
 
     bool Game::StartImpl()
@@ -28,13 +45,15 @@ namespace Polygame
         float deltaTime = 0.0f;
         float lastFrame = 0.0f;
 
-        // Call start on the active scene
-        m_ActiveScene->Start();
-        // Pass the scene root to the Renderer
-        Renderer::SetRoot(m_ActiveScene->m_RootObject);
-
         while (!glfwWindowShouldClose(m_Window))
         {
+            // Call start if a new scene was set last frame
+            if (m_SceneChangedLastFrame)
+            {
+                m_ActiveScene->Start();
+                m_SceneChangedLastFrame = false;
+            }
+
             // Calculate delta time
             float currentFrame = (float)glfwGetTime();
             deltaTime = currentFrame - lastFrame;
@@ -57,25 +76,11 @@ namespace Polygame
         return true;
     }
 
-    bool Game::InitImpl()
-    {
-        // Create a GLFWwindow on initalization
-        m_Window = PolyWindow::CreateWindow(1920, 1080, false);
-        if (!m_Window)
-        {
-            std::cout << "Could not create window\n";
-            return false;
-        }
-
-        // OpenGL configuration
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        return true;
-    }
-
     void Game::SetSceneImpl(Scene* scene)
     {
         m_ActiveScene = scene;
+        // Pass the scene root to the Renderer
+        Renderer::SetRoot(m_ActiveScene->m_RootObject);
+        m_SceneChangedLastFrame = true;
     }
 }

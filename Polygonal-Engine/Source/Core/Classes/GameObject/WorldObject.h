@@ -25,10 +25,9 @@ namespace Polygame
 		// and index 1 contains the model matrix for rendering the sprite.
 		RenderInfo GetRenderInfo();
 
+	protected:
 		// Used to identify the WorldObject in the scene linked list.
 		const char* m_Name = "WorldObject";
-
-	protected:
 		// The TransformComponent whos model matrix will be used when rendering the WorldObject.
 		TransformComponent* m_Transform = nullptr;
 		// The SpriteComponent whos TextureID will be used when rendering the WorldObject.

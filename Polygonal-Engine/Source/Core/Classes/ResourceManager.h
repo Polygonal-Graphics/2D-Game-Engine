@@ -9,17 +9,17 @@ namespace Polygame
 	{
 	public:
 
+		// Returns a loaded texture with the given name. If there is no loaded texture, loads a texture and returns that.
+		static uint32_t LoadTexture(const char* name, const char* path) { return Get().LoadTextureImpl(name, path); }
+
+	private:
+
 		// Initializes and returns the static ResourceManager singleton instance
 		static ResourceManager& Get()
 		{
 			static ResourceManager instance;
 			return instance;
 		}
-
-		// Returns a loaded texture with the given name. If there is no loaded texture, loads a texture and returns that.
-		static uint32_t LoadTexture(const char* name, const char* path) { return Get().LoadTextureImpl(name, path); }
-
-	private:
 
 		/*
 		* Static Implementations

@@ -7,7 +7,7 @@ using namespace Polygame;
 
 int main()
 {
-	// Init Game (and GLAD)
+	// Initialize the Game and GLAD
 	Game::Init();
 
 	// Create the scene and GameObjects

@@ -15,6 +15,25 @@ namespace Polygame
 	{
 	public:
 
+		// Initializes the game by calling the Game constructor. Must be called before anything else.
+		static void Init() { Get(); }
+		// Starts the game by entering the game loop.
+		static bool Start() { return Get().StartImpl(); }
+
+		// Getters and Setters
+
+		static GLFWwindow* GetWindow() { return Get().m_Window; }
+		static void SetScene(Scene* scene) { Get().SetSceneImpl(scene); }
+
+	private:
+
+		// Native GLFW window instance
+		GLFWwindow* m_Window = nullptr;
+		// The current scene that will be updated and rendered.
+		Scene* m_ActiveScene = nullptr;
+		// Set to true if the scene was changed last frame. Used for calling Start when scene changes during runtime.
+		bool m_SceneChangedLastFrame = false;
+
 		// Initializes and returns the static Game singleton instance
 		static Game& Get()
 		{
@@ -22,48 +41,12 @@ namespace Polygame
 			return instance;
 		}
 
-		// Creates the window and loads GLAD. Must be called before anything else.
-		static bool Init() { return Get().InitImpl(); };
-		// Starts the game by entering the game loop.
-		static bool Start() { return Get().StartImpl(); }
-
-	private:
-
-		/*
-		* Private members
-		*/
-
-		// Native GLFW window instance
-		GLFWwindow* m_Window = nullptr;
-
-		// The current scene that will be updated and rendered.
-		Scene* m_ActiveScene = nullptr;
-
-		/*
-		* Private methods
-		*/
-
-		// Initializes subsystems prior to starting the game. Returns false if any subsystems fail to initialize.
-		bool InitImpl();
-
-		/*
-		* Static Implementations
-		*/
+		// Static Implementations
 
 		bool StartImpl();
 		void SetSceneImpl(Scene* scene);
 
-		// Private constructor for singleton
+		// Private constructor for singleton. Creates the window and loads GLAD when the first call to Get() is made.
 		Game();
-
-	public:
-
-		/*
-		* Getters and Setters
-		*/
-
-		static GLFWwindow* GetWindow() { return Get().m_Window; }
-
-		static void SetScene(Scene* scene) { Get().SetSceneImpl(scene); }
 	};
 }

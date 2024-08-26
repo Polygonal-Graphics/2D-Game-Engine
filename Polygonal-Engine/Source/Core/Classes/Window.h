@@ -25,7 +25,7 @@ namespace Polygame
 			glfwWindowHint(GLFW_RESIZABLE, false);
 
 			GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
-			newWindow = glfwCreateWindow(width, height, "Poly-Game", monitor, nullptr);
+			newWindow = glfwCreateWindow(width, height, "Polygame", monitor, nullptr);
 			glfwMakeContextCurrent(newWindow);
 
 			// Glad: load all OpenGL function pointers

@@ -18,19 +18,24 @@ namespace Polygame
 
 		// Adds the given component to the GameObject, storing the component in the Components vector.
 		void AddComponent(BaseComponent* component);
+
 		// Returns a pointer to the first component of the given type contained in the GameObject's Components vector. Returns a nullptr if no object of the type is found.
 		template <class T> T* GetComponent();
+
 		// Returns the next GameObject in the linked list or nullptr if none exists.
 		GameObject* GetNextObject() const { return m_NextGameObject; }
 
-		// Used to identify the GameObject in the scene linked list.
-		const char* m_Name = "GameObject";
+		// Returns the name of the GameObject.
+		const char* GetName() const { return m_Name; }
 
 	protected:
 		// Called before the first tick of the game loop.
 		virtual void Start();
 		// Called every tick of the game loop.
 		virtual void Update(float deltaTime);
+
+		// Used to identify the GameObject in the scene linked list.
+		const char* m_Name = "GameObject";
 
 	private:
 		// The components attached to the GameObject.
