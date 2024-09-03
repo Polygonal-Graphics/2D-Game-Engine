@@ -2,13 +2,13 @@
 
 namespace Polygame
 {
-  void CollisionHandler::CheckCollisions(GameObject* sceneRoot)
-  {
-    
-  }
+    void CollisionHandler::CheckCollisions(GameObject* sceneRoot)
+    {
 
-  bool CollisionHandler::BoundingBoxCollisionCheck(ColliderComponent* colliderA, ColliderComponent* colliderB)
-  {
-    
-  }
-{
+    }
+
+    bool CollisionHandler::BoundingBoxCollisionCheck(ColliderComponent* colliderA, ColliderComponent* colliderB)
+    {
+
+    }
+}
