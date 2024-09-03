@@ -11,6 +11,6 @@ namespace Polygame
     private:
         // True if a collision was detected with this collider during the frame
         bool m_IsColliding = false;
-        
-    }
+
+    };
 }

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Renderer.h"
+#include "CollisionHandler.h"
 
 #include <iostream>
 
@@ -59,6 +60,9 @@ namespace Polygame
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
             glfwPollEvents();
+
+            // Poll collisions
+            CollisionHandler::CheckCollisions();
 
             // Update the active scene
             m_ActiveScene->Update(deltaTime);
