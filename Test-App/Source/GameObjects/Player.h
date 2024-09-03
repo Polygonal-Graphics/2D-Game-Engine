@@ -2,6 +2,11 @@
 
 #include "GameObject/WorldObject.h"
 
+namespace Polygame
+{
+	class ColliderComponent;
+}
+
 class Player : public Polygame::WorldObject
 {
 public:
@@ -12,5 +17,6 @@ public:
 private:
 	int fallTime = 0;
 	bool spacePressed = false;
+	Polygame::ColliderComponent* collider;
 
 };
