@@ -12,7 +12,7 @@ Player::Player()
 	m_Sprite->SetSpriteInfo("Bird", "Assets/Textures/bird.png");
 	m_Transform->m_Scale = glm::vec3(100.0f, 100.0f, 1.0f);
 
-	collider = new Polygame::ColliderComponent;
+	collider = new Polygame::ColliderComponent(m_Transform);
 	AddComponent(collider);
 }
 

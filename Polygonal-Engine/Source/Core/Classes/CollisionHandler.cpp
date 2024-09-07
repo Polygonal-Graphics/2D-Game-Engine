@@ -1,6 +1,7 @@
 #include "CollisionHandler.h"
 
 #include "Components/ColliderComponent.h"
+#include "glm/glm.hpp"
 
 namespace Polygame
 {
@@ -34,6 +35,17 @@ namespace Polygame
 
     bool CollisionHandler::BoundingBoxCollisionCheck(ColliderComponent* colliderA, ColliderComponent* colliderB)
     {
-        return false;
+        glm::vec2 aPos = colliderA->GetPosition();
+        glm::vec2 bPos = colliderB->GetPosition();
+        glm::vec2 aSize = colliderA->GetDimensions();
+        glm::vec2 bSize = colliderB->GetDimensions();
+
+        // Check for x overlap
+        bool collisionX = aPos.x + aSize.x >= bPos.x && bPos.x + bSize.x >= aPos.x;
+
+        // Check for y overlap
+        bool collisionY = aPos.y + aSize.y >= bPos.y && bPos.y + bSize.y >= aPos.y;
+
+        return collisionX && collisionY;
     }
 }
